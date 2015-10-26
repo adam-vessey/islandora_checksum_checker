@@ -322,9 +322,9 @@ function islandora_checksum_checker_get_objects($items_still_in_queue) {
     $query_offset = (int) $offset + 1;
   }
 
-  // Query the rindex to get all the objects that have a 'isMemberOfCollection'
-  // relationship but that do not have a 'islandora:collectionCModel' content
-  // model. Sort oldest to newest.
+  // Gets PIDs of all objects that are not collection objects. Uses the
+  // system variable 'islandora_checksum_checker_last_item_checked' to page
+  // through all the objects in the repo.
   $user = user_load(1);
   $tuque = islandora_get_tuque_connection($user);
   $ri_query = <<<EOQ
